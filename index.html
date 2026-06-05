@@ -489,9 +489,8 @@
     background: var(--info-bg);
     border-left: 3px solid var(--info);
     border-radius: var(--r-input);
-    padding: 0; margin-bottom: 14px;
+    padding: 12px 14px; margin-bottom: 14px;
     font-size: 12px; line-height: 1.6;
-    overflow: hidden;
   }
 
   .hp-group-label {
@@ -562,11 +561,8 @@
   .tool-info.open .ti-arrow { transform: rotate(180deg); }
 
   .tool-info-body {
-    display: none;
-    padding: 0 14px 10px;
     color: var(--text2);
   }
-  .tool-info.open .tool-info-body { display: block; }
 
   .tool-info-title {
     font-weight: 600; color: var(--info);
@@ -4091,7 +4087,6 @@ function showTool(id, el) {
   if (id === 'letter-writer')    lwCheckKey();
   if (id === 'pdf-signature')    sigInit();
   if (id === 'timezone')         tzInit();
-  initToolInfoBlocks();
   // GA event tracking
   if (typeof gtag !== 'undefined') {
     gtag('event', 'tool_open', { tool_id: id });
@@ -5383,37 +5378,11 @@ function hpRender() {
 }
 
 // ── Tool Info collapsible ──────────────────────────────────────
-function initToolInfoBlocks() {
-  document.querySelectorAll('.tool-info').forEach(block => {
-    if (block.dataset.initialized) return;
-    block.dataset.initialized = '1';
-
-    // Get existing content
-    const titleEl = block.querySelector('.tool-info-title');
-    const descEl  = block.querySelector('.tool-info-desc');
-    if (!titleEl) return;
-
-    const titleText = titleEl.innerHTML;
-    const descText  = descEl ? descEl.innerHTML : '';
-    const btnLabel  = currentLang === 'ru' ? '💡 Как использовать' : '💡 How to use';
-
-    block.innerHTML =
-      '<button class="tool-info-toggle" onclick="this.parentElement.classList.toggle(\'open\')">' +
-        btnLabel +
-        '<span class="ti-arrow">▼</span>' +
-      '</button>' +
-      '<div class="tool-info-body">' +
-        '<div class="tool-info-desc">' + descText + '</div>' +
-      '</div>';
-  });
-}
-
 // Run after DOM ready and after each showTool
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('lang-label').textContent = currentLang.toUpperCase();
   if (currentLang !== 'en') applyLang();
   loadApiKeyStatus();
-  initToolInfoBlocks();
   // Init unit converter
   const firstBtn = document.querySelector('.uc-cat-btn');
   if (firstBtn) ucSetCat('length', firstBtn);
