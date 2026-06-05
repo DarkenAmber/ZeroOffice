@@ -13,11 +13,11 @@
 <meta property="og:title" content="ZeroOffice — Free Browser-Based Office Tools">
 <meta property="og:description" content="PDF, image, QR, and AI tools that run entirely in your browser. No uploads to servers. No account needed. 100% free.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://darkenamber.github.io/DarkenAmber-zerooffice/">
-<meta property="og:image" content="https://darkenamber.github.io/DarkenAmber-zerooffice/og-zerooffice.png">
+<meta property="og:url" content="https://darkenamber.github.io/ZeroOffice/">
+<meta property="og:image" content="https://darkenamber.github.io/ZeroOffice/og-zerooffice.png">
 
 <!-- Twitter Card -->
-<meta name="twitter:site" content="https://darkenamber.github.io/DarkenAmber-zerooffice/">
+<meta name="twitter:site" content="https://darkenamber.github.io/ZeroOffice/">
 <meta name="twitter:title" content="ZeroOffice — Free Browser-Based Office Tools">
 <meta name="twitter:description" content="PDF, image, QR, and AI tools that run entirely in your browser. No uploads. No account. Free.">
 
@@ -494,7 +494,47 @@
     overflow: hidden;
   }
 
-  .tool-info-toggle {
+  .hp-group-label {
+    font-family: var(--mono-font); font-size: 10px;
+    color: var(--muted); text-transform: uppercase;
+    letter-spacing: 0.12em; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .hp-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+  }
+
+  .hp-tool-card {
+    background: var(--surface2); border: var(--bw) solid var(--border);
+    border-radius: var(--r-input); padding: 12px;
+    cursor: pointer; transition: all 0.15s; position: relative;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .hp-tool-card:hover { border-color: var(--accent); background: var(--accent-light); }
+  .hp-tool-card.ai-card:hover { border-color: var(--ai-accent); }
+
+  .hp-tool-icon { font-size: 20px; }
+  .hp-tool-name { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .hp-tool-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  .hp-pin-btn {
+    position: absolute; top: 6px; right: 6px;
+    background: none; border: none; cursor: pointer;
+    font-size: 14px; opacity: 0.3; transition: opacity 0.2s; padding: 2px;
+    line-height: 1;
+  }
+  .hp-tool-card:hover .hp-pin-btn { opacity: 0.7; }
+  .hp-pin-btn.pinned { opacity: 1; }
+
+  .hp-ai-badge {
+    font-family: var(--mono-font); font-size: 9px;
+    color: var(--ai-accent); background: var(--ai-bg);
+    border: 1px solid var(--ai-border); border-radius: 3px;
+    padding: 1px 5px; width: fit-content;
+  }
     width: 100%; background: none; border: none; cursor: pointer;
     display: flex; align-items: center; gap: 8px;
     padding: 10px 14px; text-align: left;
@@ -1176,35 +1216,30 @@
 
     <!-- ══ WELCOME PANEL ═══════════════════════════════════════ -->
     <div class="tool-panel active" id="panel-welcome">
-      <div class="welcome-screen">
-        <div class="welcome-logo">🗂️</div>
-        <div class="welcome-title" data-i18n="welcome-title">Zero · <span>Office</span></div>
-        <p class="welcome-sub" data-i18n="welcome-sub">Free office tools that work in your browser. No uploads to servers. No account needed. Just open and use.</p>
-        <div class="welcome-cards">
-          <div class="welcome-card" onclick="showTool('pdf-merge', document.querySelector('[data-title=\'PDF Merger\']'))">
-            <span class="welcome-card-icon">📎</span>
-            <div class="welcome-card-title">PDF Merger</div>
-            <div class="welcome-card-sub" data-i18n="wc-pdf-merge">Combine multiple PDFs</div>
-          </div>
-          <div class="welcome-card" onclick="showTool('img-compress', document.querySelector('[data-title=\'Image Compressor\']'))">
-            <span class="welcome-card-icon">🗜️</span>
-            <div class="welcome-card-title">Image Compressor</div>
-            <div class="welcome-card-sub" data-i18n="wc-img-compress">Shrink photos for email</div>
-          </div>
-          <div class="welcome-card" onclick="showTool('pdf-images', document.querySelector('[data-title=\'PDF ↔ Images\']'))">
-            <span class="welcome-card-icon">🔄</span>
-            <div class="welcome-card-title">PDF ↔ Images</div>
-            <div class="welcome-card-sub" data-i18n="wc-pdf-images">Convert PDF to images and back</div>
-          </div>
-          <div class="welcome-card" onclick="showTool('ai-setup', document.querySelector('[data-title=\'API Key Setup\']'))">
-            <span class="welcome-card-icon">✨</span>
-            <div class="welcome-card-title" data-i18n="wc-ai-title">AI Tools</div>
-            <div class="welcome-card-sub" data-i18n="wc-ai-sub">Free with Claude API key</div>
-          </div>
-        </div>
-      </div>
-    </div>
 
+      <!-- Privacy trust bar -->
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 16px;background:rgba(76,175,122,0.06);border:1px solid rgba(76,175,122,0.2);border-radius:var(--r-input);margin-bottom:20px;font-family:var(--mono-font);font-size:11px;color:var(--text2)">
+        <span style="color:var(--success);font-weight:600">🔒 <span data-i18n="hp-privacy">Files never leave your device</span></span>
+        <span>✓ <span data-i18n="hp-no-account">No account</span></span>
+        <span>✓ <span data-i18n="hp-no-upload">No uploads</span></span>
+        <span>✓ <span data-i18n="hp-open-source">Open source</span></span>
+        <button onclick="showTool('privacy', document.querySelector('[data-title='Security & Privacy']'))" style="margin-left:auto;background:none;border:none;color:var(--muted);font-size:11px;cursor:pointer;font-family:var(--mono-font);text-decoration:underline" data-i18n="hp-learn-more">Learn more →</button>
+      </div>
+
+      <!-- Pinned tools -->
+      <div id="hp-pinned-section" style="display:none;margin-bottom:24px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div style="font-family:var(--mono-font);font-size:11px;color:var(--val-accent);text-transform:uppercase;letter-spacing:0.1em">⭐ <span data-i18n="hp-pinned">My Tools</span></div>
+          <button onclick="hpClearPinned()" style="background:none;border:none;color:var(--muted);font-size:11px;cursor:pointer;font-family:var(--mono-font)" data-i18n="hp-clear-pins">Clear all</button>
+        </div>
+        <div id="hp-pinned-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px"></div>
+      </div>
+
+      <!-- All tools catalog -->
+      <div style="font-family:var(--mono-font);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px" data-i18n="hp-all-tools">All Tools</div>
+      <div id="hp-catalog" style="display:flex;flex-direction:column;gap:20px"></div>
+
+    </div>
     <!-- ══ PDF MERGER ══════════════════════════════════════════ -->
     <div class="tool-panel" id="panel-pdf-merge">
 
@@ -4105,6 +4140,14 @@ const I18N = {
     'badge-free':        'FREE',
     'badge-ai':          'AI',
     'btn-clear-all':     'Clear All',
+    'hp-privacy':      'Files never leave your device',
+    'hp-no-account':   'No account',
+    'hp-no-upload':    'No uploads',
+    'hp-open-source':  'Open source',
+    'hp-learn-more':   'Learn more →',
+    'hp-pinned':       'My Tools',
+    'hp-clear-pins':   'Clear all',
+    'hp-all-tools':    'All Tools',
     'welcome-title':     'Zero · Office',
     'welcome-sub':       'Free office tools that work in your browser. No uploads to servers. No account needed. Just open and use.',
     'wc-pdf-merge':      'Combine multiple PDFs',
@@ -4612,7 +4655,15 @@ const I18N = {
     'badge-free':        'FREE',
     'badge-ai':          'AI',
     'btn-clear-all':     'Очистить',
-    'welcome-title':     'Zero · Office',
+    'hp-privacy':      'Файлы остаются на вашем устройстве',
+    'hp-no-account':   'Без аккаунта',
+    'hp-no-upload':    'Без загрузки',
+    'hp-open-source':  'Открытый код',
+    'hp-learn-more':   'Подробнее →',
+    'hp-pinned':       'Мои инструменты',
+    'hp-clear-pins':   'Очистить',
+    'hp-all-tools':    'Все инструменты',
+        'welcome-title':     'Zero · Office',
     'welcome-sub':       'Бесплатные офисные инструменты прямо в браузере. Файлы не загружаются на серверы. Аккаунт не нужен.',
     'wc-pdf-merge':      'Объединить несколько PDF',
     'wc-img-compress':   'Сжать фото для email',
@@ -5146,6 +5197,175 @@ document.addEventListener('click', e => {
   }
 });
 
+// ── Homepage Catalog ───────────────────────────────────────────
+const HP_TOOLS = [
+  { group: '📄 PDF Tools', items: [
+    { id: 'pdf-merge',     icon: '📎', name: 'PDF Merger',      desc: 'Combine multiple PDFs',         descRu: 'Объединить PDF файлы' },
+    { id: 'pdf-split',     icon: '✂️', name: 'PDF Splitter',    desc: 'Split or extract pages',        descRu: 'Разделить или извлечь страницы' },
+    { id: 'pdf-compress',  icon: '🗜️', name: 'PDF Compressor',  desc: 'Reduce PDF file size',          descRu: 'Уменьшить размер PDF' },
+    { id: 'pdf-images',    icon: '🔄', name: 'PDF ↔ Images',    desc: 'Convert PDF and images',        descRu: 'Конвертация PDF и изображений' },
+    { id: 'pdf-watermark', icon: '💧', name: 'PDF Watermark',   desc: 'Add text to every page',        descRu: 'Добавить текст на страницы' },
+  ]},
+  { group: '🖼️ Image Tools', items: [
+    { id: 'img-compress',  icon: '🗜️', name: 'Image Compressor', desc: 'Shrink photos for web/email',  descRu: 'Сжать фото для веб или email' },
+    { id: 'img-resize',    icon: '📐', name: 'Image Resizer',    desc: 'Resize to exact dimensions',    descRu: 'Изменить размер изображения' },
+    { id: 'img-convert',   icon: '🔄', name: 'Image Converter',  desc: 'Convert PNG, JPG, WEBP',        descRu: 'Конвертировать PNG, JPG, WEBP' },
+    { id: 'image-editor',  icon: '🎨', name: 'Image Editor',     desc: 'Rotate, flip, adjust filters',  descRu: 'Поворот, отражение, фильтры' },
+  ]},
+  { group: '📝 Text & Data', items: [
+    { id: 'case-converter', icon: '🔡', name: 'Case Converter',  desc: 'UPPER, lower, camelCase...',    descRu: 'ВЕРХНИЙ, нижний, camelCase...' },
+    { id: 'text-diff',      icon: '⟺', name: 'Text Diff',       desc: 'Compare two texts',             descRu: 'Сравнить два текста' },
+    { id: 'csv-tools',      icon: '📊', name: 'CSV Tools',       desc: 'View and convert CSV/JSON',     descRu: 'Просмотр и конвертация CSV/JSON' },
+    { id: 'chart-builder',  icon: '📈', name: 'Chart Builder',   desc: 'CSV data to charts',            descRu: 'CSV данные в графики' },
+    { id: 'word-counter',   icon: '📝', name: 'Word Counter',    desc: 'Words, chars, reading time',    descRu: 'Слова, символы, время чтения' },
+  ]},
+  { group: '🛠️ Utilities', items: [
+    { id: 'qr-bulk',       icon: '⬛', name: 'Bulk QR Generator', desc: 'QR codes from a list',        descRu: 'QR коды из списка' },
+    { id: 'meeting-cost',  icon: '💸', name: 'Meeting Cost',     desc: 'Live cost counter',             descRu: 'Счётчик стоимости совещания' },
+    { id: 'password-gen',  icon: '🔐', name: 'Password Generator',desc: 'Secure random passwords',     descRu: 'Безопасные случайные пароли' },
+    { id: 'privacy',       icon: '🔒', name: 'Security & Privacy',desc: 'Why you can trust us',        descRu: 'Почему нам можно доверять' },
+  ]},
+  { group: '🔄 Converters', items: [
+    { id: 'currency',      icon: '💱', name: 'Currency',         desc: 'Live exchange rates',           descRu: 'Актуальные курсы валют' },
+    { id: 'unit-converter',icon: '📏', name: 'Unit Converter',   desc: 'Length, weight, temp...',       descRu: 'Длина, вес, температура...' },
+    { id: 'color-converter',icon:'🎨', name: 'Color Converter',  desc: 'HEX, RGB, HSL, CMYK',           descRu: 'HEX, RGB, HSL, CMYK' },
+    { id: 'timezone',      icon: '🌍', name: 'Timezone',         desc: 'Convert between timezones',     descRu: 'Конвертация часовых поясов' },
+  ]},
+  { group: '✨ AI Tools · Claude API', ai: true, items: [
+    { id: 'ai-setup',      icon: '🔑', name: 'API Key Setup',    desc: 'Connect Claude API key',        descRu: 'Подключить ключ Claude API' },
+    { id: 'excel-formula', icon: '📊', name: 'Excel Formulas',   desc: 'Describe → get formula',        descRu: 'Описать → получить формулу' },
+    { id: 'invoice-gen',   icon: '🧾', name: 'Invoice Generator',desc: 'AI-generated invoices',         descRu: 'Инвойс с помощью AI' },
+    { id: 'ocr-ai',        icon: '🔍', name: 'OCR + AI Cleanup', desc: 'Extract text from images',      descRu: 'Извлечь текст из изображений' },
+    { id: 'email-rewriter',icon: '✉️', name: 'Email Rewriter',   desc: 'Rewrite and improve emails',    descRu: 'Переписать и улучшить письма' },
+    { id: 'doc-summarizer',icon: '📋', name: 'Document Summarizer',desc: 'Summarize any document',     descRu: 'Резюмировать любой документ' },
+    { id: 'contract-analyzer',icon:'📜',name:'Contract Analyzer',desc: 'Plain-language contracts',      descRu: 'Объяснить договор простыми словами' },
+    { id: 'letter-writer', icon: '✍️', name: 'Letter Writer',    desc: 'AI business letters',           descRu: 'Деловые письма с AI' },
+  ]},
+];
+
+const HP_PINS_KEY = 'zo-pinned-tools';
+
+function hpGetPinned() {
+  try { return JSON.parse(localStorage.getItem(HP_PINS_KEY) || '[]'); } catch { return []; }
+}
+
+function hpSavePinned(pins) {
+  localStorage.setItem(HP_PINS_KEY, JSON.stringify(pins));
+}
+
+function hpTogglePin(id, event) {
+  event.stopPropagation();
+  const pins = hpGetPinned();
+  const idx  = pins.indexOf(id);
+  if (idx === -1) pins.push(id);
+  else pins.splice(idx, 1);
+  hpSavePinned(pins);
+  hpRender();
+  hpRenderPinnedSidebar();
+}
+
+function hpClearPinned() {
+  hpSavePinned([]);
+  hpRender();
+  hpRenderPinnedSidebar();
+}
+
+function hpRenderPinnedSidebar() {
+  const pins = hpGetPinned();
+  let section = document.getElementById('sidebar-pinned-section');
+
+  if (!pins.length) {
+    if (section) section.remove();
+    return;
+  }
+
+  if (!section) {
+    section = document.createElement('div');
+    section.id = 'sidebar-pinned-section';
+    section.className = 'sidebar-section';
+    const nav = document.querySelector('.sidebar');
+    nav.insertBefore(section, nav.firstChild);
+  }
+
+  const isRu = currentLang === 'ru';
+  section.innerHTML = '<div class="sidebar-section-label" style="color:var(--val-accent)">⭐ ' + (isRu ? 'Мои инструменты' : 'My Tools') + '</div>';
+
+  HP_TOOLS.forEach(group => {
+    group.items.forEach(tool => {
+      if (!pins.includes(tool.id)) return;
+      const el = document.createElement('div');
+      el.className = 'sidebar-item' + (group.ai ? ' ai-item' : '');
+      el.setAttribute('onclick', 'showTool(\'' + tool.id + '\', this)');
+      el.setAttribute('data-title', tool.name);
+      el.innerHTML = '<span class="sidebar-item-icon">' + tool.icon + '</span><span>' + tool.name + '</span>';
+      section.appendChild(el);
+    });
+  });
+}
+
+function hpRender() {
+  const catalog = document.getElementById('hp-catalog');
+  if (!catalog) return;
+  const pins  = hpGetPinned();
+  const isRu  = currentLang === 'ru';
+
+  catalog.innerHTML = '';
+
+  HP_TOOLS.forEach(group => {
+    const section = document.createElement('div');
+    section.innerHTML = '<div class="hp-group-label">' + group.group + '</div>';
+
+    const grid = document.createElement('div');
+    grid.className = 'hp-tools-grid';
+
+    group.items.forEach(tool => {
+      const isPinned = pins.includes(tool.id);
+      const card = document.createElement('div');
+      card.className = 'hp-tool-card' + (group.ai ? ' ai-card' : '');
+      card.onclick = () => showTool(tool.id, document.querySelector('[data-title="' + tool.name + '"]'));
+
+      card.innerHTML =
+        '<div class="hp-tool-icon">' + tool.icon + '</div>' +
+        '<div class="hp-tool-name">' + tool.name + '</div>' +
+        '<div class="hp-tool-desc">' + (isRu ? tool.descRu : tool.desc) + '</div>' +
+        (group.ai ? '<div class="hp-ai-badge">AI</div>' : '') +
+        '<button class="hp-pin-btn ' + (isPinned ? 'pinned' : '') + '" onclick="hpTogglePin(\'' + tool.id + '\', event)" title="' + (isPinned ? 'Unpin' : 'Pin to sidebar') + '">' +
+          (isPinned ? '⭐' : '☆') +
+        '</button>';
+
+      grid.appendChild(card);
+    });
+
+    section.appendChild(grid);
+    catalog.appendChild(section);
+  });
+
+  // Show/hide pinned section
+  const pinnedSection = document.getElementById('hp-pinned-section');
+  const pinnedGrid    = document.getElementById('hp-pinned-grid');
+  if (pinnedSection && pinnedGrid) {
+    if (pins.length) {
+      pinnedSection.style.display = 'block';
+      pinnedGrid.innerHTML = '';
+      HP_TOOLS.forEach(group => {
+        group.items.forEach(tool => {
+          if (!pins.includes(tool.id)) return;
+          const card = document.createElement('div');
+          card.className = 'hp-tool-card' + (group.ai ? ' ai-card' : '');
+          card.onclick = () => showTool(tool.id, document.querySelector('[data-title="' + tool.name + '"]'));
+          card.innerHTML =
+            '<div class="hp-tool-icon">' + tool.icon + '</div>' +
+            '<div class="hp-tool-name">' + tool.name + '</div>' +
+            '<button class="hp-pin-btn pinned" onclick="hpTogglePin(\'' + tool.id + '\', event)">⭐</button>';
+          pinnedGrid.appendChild(card);
+        });
+      });
+    } else {
+      pinnedSection.style.display = 'none';
+    }
+  }
+}
+
 // ── Tool Info collapsible ──────────────────────────────────────
 function initToolInfoBlocks() {
   document.querySelectorAll('.tool-info').forEach(block => {
@@ -5186,6 +5406,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load cached currency rates
   const cached = localStorage.getItem(CUR_CACHE_KEY);
   if (cached) curConvert();
+  hpRender();
+  hpRenderPinnedSidebar();
 });
 
 // ── API Key ────────────────────────────────────────────────────
