@@ -500,6 +500,9 @@
     letter-spacing: 0.12em; margin-bottom: 8px;
     display: flex; align-items: center; gap: 6px;
   }
+  [data-theme="retro"] .hp-group-label { color: #a855f7; }
+  .hp-group-label.hp-group-offline { color: var(--val-accent); }
+  .hp-group-label.hp-group-ai { color: var(--ai-accent); font-weight: 700; }
 
   .hp-tools-grid {
     display: grid;
@@ -516,9 +519,21 @@
   .hp-tool-card:hover { border-color: var(--accent); background: var(--accent-light); }
   .hp-tool-card.ai-card:hover { border-color: var(--ai-accent); }
 
+  [data-theme="retro"] .hp-tool-card {
+    background: var(--surface2);
+    border-color: var(--border);
+  }
+  [data-theme="retro"] .hp-tool-card:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
   .hp-tool-icon { font-size: 20px; }
   .hp-tool-name { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.3; }
-  .hp-tool-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+  .hp-tool-desc { font-size: 11px; color: var(--text2); line-height: 1.4; }
+
+  [data-theme="retro"] .hp-tool-name { color: #ffffff; font-weight: 700; }
+  [data-theme="retro"] .hp-tool-desc { color: #ccbbdd; }
 
   .hp-pin-btn {
     position: absolute; top: 6px; right: 6px;
@@ -5313,7 +5328,8 @@ function hpRender() {
 
   HP_TOOLS.forEach(group => {
     const section = document.createElement('div');
-    section.innerHTML = '<div class="hp-group-label">' + group.group + '</div>';
+    const labelClass = group.ai ? 'hp-group-label hp-group-ai' : 'hp-group-label hp-group-offline';
+    section.innerHTML = '<div class="' + labelClass + '">' + group.group + '</div>';
 
     const grid = document.createElement('div');
     grid.className = 'hp-tools-grid';
