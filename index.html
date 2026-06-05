@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZeroOffice — Free Browser-Based Office Tools</title>
-<meta name="description" content="Free office tools that run entirely in your browser. PDF Merger, Splitter, Image Compressor, QR Generator, AI Formula Generator and more. No uploads, no account needed.">
+<title>ZeroOffice — Work with Documents. One File. No Installation.</title>
+<meta name="description" content="Everything you need to work with documents. PDF tools, image editor, AI writing assistant. No account, no uploads, no installation. One HTML file.">
 <meta name="keywords" content="free pdf tools, pdf merger, pdf splitter, image compressor, qr code generator, excel formula generator, ocr, image to pdf, browser tools, offline tools">
 <meta name="author" content="DarkenAmber">
 <meta name="robots" content="index, follow">
 
 <!-- Open Graph -->
-<meta property="og:title" content="ZeroOffice — Free Browser-Based Office Tools">
-<meta property="og:description" content="PDF, image, QR, and AI tools that run entirely in your browser. No uploads to servers. No account needed. 100% free.">
+<meta property="og:title" content="ZeroOffice — Work with Documents. One File. No Installation.">
+<meta property="og:description" content="Everything you need to work with documents. PDF tools, image editor, AI writing assistant. No account, no uploads, no installation.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://darkenamber.github.io/ZeroOffice/">
 <meta property="og:image" content="https://darkenamber.github.io/ZeroOffice/og-zerooffice.png">
 
 <!-- Twitter Card -->
 <meta name="twitter:site" content="https://darkenamber.github.io/ZeroOffice/">
-<meta name="twitter:title" content="ZeroOffice — Free Browser-Based Office Tools">
-<meta name="twitter:description" content="PDF, image, QR, and AI tools that run entirely in your browser. No uploads. No account. Free.">
+<meta name="twitter:title" content="ZeroOffice — Work with Documents. One File. No Installation.">
+<meta name="twitter:description" content="Everything you need to work with documents. No account, no uploads, no installation.">
 
 <!-- Favicon emoji -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗂️</text></svg>">
@@ -1170,9 +1170,9 @@
     <!-- Utility Group -->
     <div class="sidebar-section">
       <div class="sidebar-section-label">🛠️ Utilities</div>
-      <div class="sidebar-item" onclick="showTool('qr-bulk', this)" data-title="Bulk QR Generator"><span class="sidebar-item-icon">⬛</span><span>Bulk QR Generator</span></div>
+
       <div class="sidebar-item" onclick="showTool('meeting-cost', this)" data-title="Meeting Cost Calculator"><span class="sidebar-item-icon">💸</span><span>Meeting Cost</span></div>
-      <div class="sidebar-item" onclick="showTool('password-gen', this)" data-title="Password Generator"><span class="sidebar-item-icon">🔐</span><span>Password Generator</span></div>
+
       <div class="sidebar-item" onclick="showTool('privacy', this)" data-title="Security & Privacy"><span class="sidebar-item-icon">🔒</span><span>Security & Privacy</span></div>
     </div>
 
@@ -1181,8 +1181,8 @@
       <div class="sidebar-section-label">🔄 Converters</div>
       <div class="sidebar-item" onclick="showTool('currency', this)" data-title="Currency Converter"><span class="sidebar-item-icon">💱</span><span>Currency</span><span class="sidebar-badge" style="background:rgba(100,181,246,0.1);color:#64B5F6;border-color:rgba(100,181,246,0.3);font-family:var(--mono-font);font-size:9px;padding:1px 6px;border-radius:100px;border:1px solid">ONLINE</span></div>
       <div class="sidebar-item" onclick="showTool('unit-converter', this)" data-title="Unit Converter"><span class="sidebar-item-icon">📏</span><span>Unit Converter</span></div>
-      <div class="sidebar-item" onclick="showTool('color-converter', this)" data-title="Color Converter"><span class="sidebar-item-icon">🎨</span><span>Color Converter</span></div>
-      <div class="sidebar-item" onclick="showTool('timezone', this)" data-title="Timezone Converter"><span class="sidebar-item-icon">🌍</span><span>Timezone</span></div>
+
+
     </div>
 
     <div class="sidebar-section">
@@ -4149,7 +4149,7 @@ const I18N = {
     'hp-clear-pins':   'Clear all',
     'hp-all-tools':    'All Tools',
     'welcome-title':     'Zero · Office',
-    'welcome-sub':       'Free office tools that work in your browser. No uploads to servers. No account needed. Just open and use.',
+    'welcome-sub':       'Everything you need to work with documents. One file. No installation. No account.',
     'wc-pdf-merge':      'Combine multiple PDFs',
     'wc-img-compress':   'Shrink photos for email',
     'wc-img-to-pdf':     'Photos to one PDF',
@@ -4664,7 +4664,7 @@ const I18N = {
     'hp-clear-pins':   'Очистить',
     'hp-all-tools':    'Все инструменты',
         'welcome-title':     'Zero · Office',
-    'welcome-sub':       'Бесплатные офисные инструменты прямо в браузере. Файлы не загружаются на серверы. Аккаунт не нужен.',
+    'welcome-sub':       'Всё для работы с документами. Один файл. Без установки. Без аккаунта.',
     'wc-pdf-merge':      'Объединить несколько PDF',
     'wc-img-compress':   'Сжать фото для email',
     'wc-img-to-pdf':     'Фото в один PDF',
@@ -5220,18 +5220,18 @@ const HP_TOOLS = [
     { id: 'word-counter',   icon: '📝', name: 'Word Counter',    desc: 'Words, chars, reading time',    descRu: 'Слова, символы, время чтения' },
   ]},
   { group: '🛠️ Utilities', items: [
-    { id: 'qr-bulk',       icon: '⬛', name: 'Bulk QR Generator', desc: 'QR codes from a list',        descRu: 'QR коды из списка' },
+
     { id: 'meeting-cost',  icon: '💸', name: 'Meeting Cost',     desc: 'Live cost counter',             descRu: 'Счётчик стоимости совещания' },
-    { id: 'password-gen',  icon: '🔐', name: 'Password Generator',desc: 'Secure random passwords',     descRu: 'Безопасные случайные пароли' },
+
     { id: 'privacy',       icon: '🔒', name: 'Security & Privacy',desc: 'Why you can trust us',        descRu: 'Почему нам можно доверять' },
   ]},
   { group: '🔄 Converters', items: [
     { id: 'currency',      icon: '💱', name: 'Currency',         desc: 'Live exchange rates',           descRu: 'Актуальные курсы валют' },
     { id: 'unit-converter',icon: '📏', name: 'Unit Converter',   desc: 'Length, weight, temp...',       descRu: 'Длина, вес, температура...' },
-    { id: 'color-converter',icon:'🎨', name: 'Color Converter',  desc: 'HEX, RGB, HSL, CMYK',           descRu: 'HEX, RGB, HSL, CMYK' },
-    { id: 'timezone',      icon: '🌍', name: 'Timezone',         desc: 'Convert between timezones',     descRu: 'Конвертация часовых поясов' },
+
+
   ]},
-  { group: '✨ AI Tools · Claude API', ai: true, items: [
+  { group: '✨ AI Tools — Claude API key? Unlock superpowers', ai: true, items: [
     { id: 'ai-setup',      icon: '🔑', name: 'API Key Setup',    desc: 'Connect Claude API key',        descRu: 'Подключить ключ Claude API' },
     { id: 'excel-formula', icon: '📊', name: 'Excel Formulas',   desc: 'Describe → get formula',        descRu: 'Описать → получить формулу' },
     { id: 'invoice-gen',   icon: '🧾', name: 'Invoice Generator',desc: 'AI-generated invoices',         descRu: 'Инвойс с помощью AI' },

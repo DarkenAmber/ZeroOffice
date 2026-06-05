@@ -1,7 +1,8 @@
 # 🗂️ ZeroOffice
-### Free Office Tools — by DarkenAmber
+### Work with Documents. One File. No Installation.
+### by DarkenAmber
 
-> PDF merger, image editor, AI writing assistant and more. No account, no file uploads, no ads. Runs entirely in your browser.
+> Everything you need to work with documents. PDF tools, image editor, AI writing assistant. No account, no uploads, no installation. Open and use.
 
 **Live:** [darkenamber.github.io/ZeroOffice](https://darkenamber.github.io/ZeroOffice/)
 
@@ -9,7 +10,9 @@
 
 ## What is ZeroOffice?
 
-ZeroOffice is a single HTML file containing 30+ free office tools. Open it in any browser — no installation, no backend, no server. Everything runs locally on your device.
+ZeroOffice is a single HTML file. Open it in any browser — no installation, no backend, no server, no account. Everything runs locally on your device.
+
+One file. Zero setup. Full office toolkit.
 
 ---
 
@@ -18,53 +21,49 @@ ZeroOffice is a single HTML file containing 30+ free office tools. Open it in an
 ### 📄 PDF Tools
 | Tool | Description |
 |------|-------------|
-| PDF Merger | Combine multiple PDFs into one. Drag to reorder pages. |
+| PDF Merger | Combine multiple PDFs into one. Drag to reorder. |
 | PDF Splitter | Extract pages, split all, or split into chunks. |
-| PDF Compressor | Reduce file size by re-rendering pages at lower quality. Best for scanned PDFs. |
-| PDF ↔ Images | Convert images to PDF or extract PDF pages as PNG/JPG. |
+| PDF Compressor | Reduce file size. Best for scanned documents. |
+| PDF ↔ Images | Convert images to PDF or extract pages as PNG/JPG. |
 | PDF Watermark | Add permanent text watermark to every page. |
 
 ### 🖼️ Image Tools
 | Tool | Description |
 |------|-------------|
 | Image Compressor | Compress JPG/PNG/WEBP with quality slider. Batch support. |
-| Image Resizer | Resize by pixels, percentage, or preset (HD, 4K, Instagram, etc). |
-| Image Converter | Convert between PNG, JPG, and WEBP formats. |
-| Image Editor | Rotate, flip, adjust brightness, contrast, saturation, blur. |
+| Image Resizer | Resize by pixels, percentage, or preset (HD, 4K, Instagram...). |
+| Image Converter | Convert between PNG, JPG, and WEBP. |
+| Image Editor | Rotate, flip, brightness, contrast, saturation, blur. |
 
 ### 📝 Text & Data
 | Tool | Description |
 |------|-------------|
+| Word Counter | Words, characters, sentences, reading time, top words. |
 | Case Converter | UPPER, lower, Title, camelCase, snake_case, kebab-case and more. |
 | Text Diff | Compare two texts and highlight differences line by line. |
-| CSV Tools | View CSV as table, convert CSV↔JSON. |
-| Chart Builder | CSV data → Bar, Line, Pie, Doughnut charts. Export PNG/SVG/Excel/HTML. |
-| Word Counter | Words, characters, sentences, reading time, top words. |
+| CSV Tools | View CSV as table, search, sort. Convert CSV ↔ JSON. |
+| Chart Builder | CSV → Bar, Line, Pie, Doughnut charts. Export PNG/SVG/Excel/HTML. |
 
 ### 🛠️ Utilities
 | Tool | Description |
 |------|-------------|
-| Bulk QR Generator | Generate dozens of QR codes from a list. Download as ZIP. |
-| Meeting Cost Calculator | Live cost counter for meetings. Viral and useful. |
-| Password Generator | Cryptographically secure passwords. Uses crypto.getRandomValues. |
-| Security & Privacy | Full transparency about what we do and don't collect. |
+| Meeting Cost | Live cost counter for meetings. |
+| Security & Privacy | Full transparency about data practices. |
 
 ### 🔄 Converters
 | Tool | Description |
 |------|-------------|
-| Currency Converter | Live exchange rates. Cached 1 hour. No API key needed. |
+| Currency | Live exchange rates. Cached 1 hour. No API key needed. |
 | Unit Converter | Length, weight, temperature, area, volume, speed, data. |
-| Color Converter | HEX ↔ RGB ↔ HSL ↔ CMYK with luminance and contrast info. |
-| Timezone Converter | Convert time between 60+ world timezones. |
 
-### ✨ AI Tools (Claude API)
+### ✨ AI Tools — Claude API key? Unlock superpowers.
 | Tool | Description |
 |------|-------------|
 | Excel Formula Generator | Describe what you need → get the formula. Excel & Google Sheets. |
-| Invoice Generator | Fill in details → AI generates a professional invoice. Print as PDF. |
+| Invoice Generator | Fill in details → AI generates a professional invoice. |
 | OCR + AI Cleanup | Upload a photo → get clean, structured text. |
-| Email Rewriter | Rewrite, improve, shorten, or fix grammar. Choose tone and language. |
-| Document Summarizer | Paste any document → get key points, TL;DR, or action items. |
+| Email Rewriter | Rewrite, improve, shorten, fix grammar. Choose tone and language. |
+| Document Summarizer | Paste any document → key points, TL;DR, or action items. |
 | Contract Analyzer | Plain-language explanation of contracts with risk highlights. |
 | Letter Writer | Describe what you need → AI writes a professional business letter. |
 
@@ -72,8 +71,8 @@ ZeroOffice is a single HTML file containing 30+ free office tools. Open it in an
 
 ## Privacy
 
-- **Your files never leave your device** — all processing is local
-- No account required, no registration, no email
+- **Your files never leave your device** — all processing is local in your browser
+- No account, no registration, no email required
 - No ads, no data selling
 - AI tools send data directly to Anthropic API — ZeroOffice is not in the middle
 - Anonymous page view statistics via Google Analytics
@@ -85,26 +84,30 @@ ZeroOffice is a single HTML file containing 30+ free office tools. Open it in an
 AI tools use the [Claude API](https://www.anthropic.com) by Anthropic.
 
 1. Create an account at [console.anthropic.com](https://console.anthropic.com)
-2. New accounts receive **~$5 in free credits**
-3. Go to API Keys and create a key
+2. New accounts receive **~$5 in free credits** — no credit card required
+3. Go to API Keys → create a key
 4. In ZeroOffice open **AI Setup** and paste your key
-5. Key is stored only in your browser's localStorage
+5. Key is stored only in your browser's localStorage — we never see it
 
 ---
 
 ## Architecture
 
-- **Single HTML file** — `index.html`
-- No build step, no dependencies to install
-- No backend, no server, no API keys required for offline tools
+```
+zerooffice/
+└── index.html    ← the entire product (~480KB, single file)
+```
+
+- No build step, no npm, no Docker
+- No backend, no server, no database
 - 3 themes: Dark (default), Light, Retro 8-bit
 - EN/RU bilingual interface
+- Works offline (except Currency Converter and AI tools)
 
-### Libraries (CDN)
+### Libraries (CDN, loaded on demand)
 - [pdf-lib](https://pdf-lib.js.org/) — PDF manipulation
 - [PDF.js](https://mozilla.github.io/pdf.js/) — PDF rendering
 - [JSZip](https://stuk.github.io/jszip/) — ZIP creation
-- [qrcodejs](https://github.com/davidshimjs/qrcodejs) — QR generation
 - [Chart.js](https://www.chartjs.org/) — Charts
 - [ExcelJS](https://github.com/exceljs/exceljs) — Excel export
 
@@ -114,24 +117,24 @@ AI tools use the [Claude API](https://www.anthropic.com) by Anthropic.
 
 | Product | Description | Link |
 |---------|-------------|------|
-| 🛠️ IT Tools | 35+ developer and IT utilities | [View](https://darkenamber.github.io/DarkenAmber-it-tools/) |
-| 🗂️ ZeroOffice | Free office tools | This repo |
+| 🛠️ IT Tools | Developer and IT utilities | [darkenamber.github.io/DarkenAmber-it-tools](https://darkenamber.github.io/DarkenAmber-it-tools/) |
+| 🗂️ ZeroOffice | Document tools for everyone | This repo |
 | 📱 Social Tools | AI social media content creation | Coming soon |
 
 ---
 
 ## Support
 
-If ZeroOffice saves you time, consider supporting:
+If ZeroOffice saves you time:
 
-[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support-FF5E5B?style=flat&logo=ko-fi)](https://ko-fi.com/darkenamber)
-[![Patreon](https://img.shields.io/badge/Patreon-Support-FF424D?style=flat&logo=patreon)](https://www.patreon.com/cw/DarkenAmber)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Buy%20me%20a%20coffee-FF5E5B?style=flat&logo=ko-fi)](https://ko-fi.com/darkenamber)
+[![Patreon](https://img.shields.io/badge/Patreon-Support%20%243%2Fmonth-FF424D?style=flat&logo=patreon)](https://www.patreon.com/cw/DarkenAmber)
 
 ---
 
 ## License
 
-MIT License — see [LICENSE](LICENSE) for details.
+MIT — see [LICENSE](LICENSE)
 
 ---
 
