@@ -24,15 +24,6 @@
 <!-- Favicon emoji -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗂️</text></svg>">
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LD0JL8MK4L"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-LD0JL8MK4L');
-</script>
-
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Press+Start+2P&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <script src="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
@@ -4087,10 +4078,6 @@ function showTool(id, el) {
   if (id === 'letter-writer')    lwCheckKey();
   if (id === 'pdf-signature')    sigInit();
   if (id === 'timezone')         tzInit();
-  // GA event tracking
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'tool_open', { tool_id: id });
-  }
 }
 
 // ── Sidebar mobile ─────────────────────────────────────────────
@@ -4323,7 +4310,7 @@ const I18N = {
     'priv-d6':           "❌ Don't set tracking cookies",
     'priv-d7':           "❌ Don't show advertisements",
     'priv-d8':           "❌ Don't use hidden scripts",
-    'priv-ga':           '⚠ We DO use Google Analytics for anonymous page view counts only -- no personal data',
+    'priv-ga':           '',
     'priv-ls1':          'Your preferences (theme, language, API key) are stored ONLY on your device',
     'priv-ls2':          'Nothing is transmitted to our servers',
     'priv-ls3':          'Clear everything anytime: browser Settings → Clear browsing data → Site data',
@@ -4570,7 +4557,7 @@ const I18N = {
     'about-priv-1':      'Your files are processed locally -- they never leave your device',
     'about-priv-2':      'No account required, no registration, no email',
     'about-priv-3':      'No ads, no data selling, no third-party tracking',
-    'about-priv-4':      'We collect anonymous visit statistics (page views only) to understand what helps people most',
+    'about-priv-4':      'No analytics, no tracking scripts, no data collection of any kind',
     'about-priv-5':      'AI tools send your text/images directly to Anthropic API -- we never see them',
     'privacy-badge':     'Files never leave your device',
     'about-all-tools':   'All DarkenAmber Tools on GitHub',
@@ -4838,7 +4825,7 @@ const I18N = {
     'priv-d6':           '❌ Не устанавливаем куки слежки',
     'priv-d7':           '❌ Не показываем рекламу',
     'priv-d8':           '❌ Не используем скрытые скрипты',
-    'priv-ga':           '⚠ Мы используем Google Analytics только для анонимного подсчёта просмотров -- без личных данных',
+    'priv-ga':           '',
     'priv-ls1':          'Настройки (тема, язык, API ключ) хранятся ТОЛЬКО на вашем устройстве',
     'priv-ls2':          'Ничего не передаётся на наши серверы',
     'priv-ls3':          'Очистить всё: Настройки браузера → Очистить данные сайта',
@@ -5085,7 +5072,7 @@ const I18N = {
     'about-priv-1':      'Ваши файлы обрабатываются локально -- они никогда не покидают ваше устройство',
     'about-priv-2':      'Аккаунт не нужен, регистрация не нужна, email не нужен',
     'about-priv-3':      'Без рекламы, без продажи данных, без сторонней слежки',
-    'about-priv-4':      'Мы собираем анонимную статистику посещений (только просмотры страниц) чтобы понять что помогает людям',
+    'about-priv-4':      'Никакой аналитики, никаких скриптов слежки, никакого сбора данных',
     'about-priv-5':      'AI инструменты отправляют данные напрямую в Anthropic API -- мы их не видим',
     'privacy-badge':     'Файлы остаются на вашем устройстве',
     'about-all-tools':   'Все инструменты DarkenAmber на GitHub',

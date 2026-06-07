@@ -2,7 +2,7 @@
 ### Work with Documents. One File. No Installation.
 ### by DarkenAmber
 
-> Everything you need to work with documents. PDF tools, image editor, AI writing assistant. No account, no uploads, no installation. Open and use.
+> Everything you need to work with documents. PDF tools, image editor, AI writing assistant. No account, no uploads, no tracking, no installation. Open and use.
 
 **Live:** [darkenamber.github.io/ZeroOffice](https://darkenamber.github.io/ZeroOffice/)
 
@@ -75,7 +75,7 @@ One file. Zero setup. Full office toolkit.
 - No account, no registration, no email required
 - No ads, no data selling
 - AI tools send data directly to Anthropic API — ZeroOffice is not in the middle
-- Anonymous page view statistics via Google Analytics
+- No analytics, no tracking scripts, no data collection of any kind
 
 ---
 
