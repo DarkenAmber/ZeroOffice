@@ -34,6 +34,8 @@
 <script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *:focus { outline: none; }
+  *:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
   /* ═══ DARK THEME ═══════════════════════════════════════════ */
   [data-theme="dark"] {
@@ -243,8 +245,15 @@
     font-family: var(--mono-font); font-size: 11px;
   }
   .home-btn:hover { color: var(--val-accent); border-color: var(--val-accent); }
-  [data-theme="retro"] .home-btn { border-color: var(--border); }
-  [data-theme="retro"] .home-btn:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 8px rgba(251,191,36,0.2); }
+  [data-theme="retro"] .brand-logo { border-color: transparent !important; box-shadow: none !important; }
+  [data-theme="retro"] .home-btn { border-color: transparent !important; }
+  [data-theme="retro"] .home-btn:hover { border-color: transparent !important; color: var(--accent); box-shadow: none; }
+  [data-theme="retro"] .theme-btn { border-color: transparent !important; background: transparent !important; box-shadow: none !important; }
+  [data-theme="retro"] .theme-btn.active { border-color: transparent !important; box-shadow: none !important; background: rgba(251,191,36,0.15) !important; }
+  [data-theme="retro"] #lang-btn { border-color: transparent !important; }
+  [data-theme="retro"] #clear-all-topbar-btn { border-color: transparent !important; color: var(--error); }
+
+  .nav-link {
     font-family: var(--mono-font); font-size: 11px;
     color: var(--muted); text-decoration: none;
     padding: 5px 10px;
@@ -511,11 +520,13 @@
 
   [data-theme="retro"] .hp-tool-card {
     background: var(--surface2);
-    border-color: var(--border);
+    border-color: transparent;
+    box-shadow: 0 0 0 1px rgba(168,85,247,0.15);
   }
   [data-theme="retro"] .hp-tool-card:hover {
-    border-color: var(--accent);
-    background: var(--accent-light);
+    border-color: transparent;
+    box-shadow: 0 0 0 1px rgba(251,191,36,0.5);
+    background: rgba(251,191,36,0.04);
   }
 
   .hp-tool-icon { font-size: 20px; }
@@ -1115,7 +1126,7 @@
     </div>
   </div>
   <div class="topbar-right">
-    <button onclick="clearAllData()" title="Clear All Data" style="background:transparent;border:2px solid #EF5350;color:#EF5350;margin-right:4px;font-weight:700;padding:7px 14px;font-size:11px;border-radius:var(--r-btn);cursor:pointer;transition:all 0.2s;font-family:var(--mono-font);letter-spacing:0.05em;white-space:nowrap">🗑️ CLEAR ALL</button>
+    <button onclick="clearAllData()" title="Clear All Data" style="background:transparent;border:2px solid #EF5350;color:#EF5350;margin-right:4px;font-weight:700;padding:7px 14px;font-size:11px;border-radius:var(--r-btn);cursor:pointer;transition:all 0.2s;font-family:var(--mono-font);letter-spacing:0.05em;white-space:nowrap" id="clear-all-topbar-btn">🗑️ CLEAR ALL</button>
     <button class="theme-btn" onclick="openAboutModal()" title="About">ℹ️</button>
     <div class="theme-switcher">
       <button class="theme-btn" id="btn-dark"  onclick="setTheme('dark')"  title="Dark">🌙</button>
@@ -1181,7 +1192,7 @@
     <!-- Converters Group -->
     <div class="sidebar-section">
       <div class="sidebar-section-label">🔄 Converters</div>
-      <div class="sidebar-item" onclick="showTool('currency', this)" data-title="Currency Converter"><span class="sidebar-item-icon">💱</span><span>Currency</span><span class="sidebar-badge" style="background:rgba(100,181,246,0.1);color:#64B5F6;border-color:rgba(100,181,246,0.3);font-family:var(--mono-font);font-size:9px;padding:1px 6px;border-radius:100px;border:1px solid">ONLINE</span></div>
+      <div class="sidebar-item" onclick="showTool('currency', this)" data-title="Currency Converter"><span class="sidebar-item-icon">💱</span><span>Currency</span></div>
       <div class="sidebar-item" onclick="showTool('unit-converter', this)" data-title="Unit Converter"><span class="sidebar-item-icon">📏</span><span>Unit Converter</span></div>
 
 
@@ -1197,18 +1208,15 @@
       <div class="sidebar-item ai-item" onclick="showTool('doc-summarizer', this)" data-title="Document Summarizer">
         <span class="sidebar-item-icon">📋</span>
         <span>Document Summarizer</span>
-        <span class="sidebar-badge ai-badge" data-i18n="badge-ai">AI</span>
-      </div>
+              </div>
       <div class="sidebar-item ai-item" onclick="showTool('contract-analyzer', this)" data-title="Contract Analyzer">
         <span class="sidebar-item-icon">📜</span>
         <span>Contract Analyzer</span>
-        <span class="sidebar-badge ai-badge" data-i18n="badge-ai">AI</span>
-      </div>
+              </div>
       <div class="sidebar-item ai-item" onclick="showTool('letter-writer', this)" data-title="Business Letter Writer">
         <span class="sidebar-item-icon">✍️</span>
         <span>Letter Writer</span>
-        <span class="sidebar-badge ai-badge" data-i18n="badge-ai">AI</span>
-      </div>
+              </div>
     </div>
 
   </nav>
@@ -5228,8 +5236,7 @@ const HP_TOOLS = [
 
 
   ]},
-  { group: '✨ AI Tools — Claude API key? Unlock superpowers', ai: true, items: [
-    { id: 'ai-setup',      icon: '🔑', name: 'API Key Setup',    desc: 'Connect Claude API key',        descRu: 'Подключить ключ Claude API' },
+  { group: '✨ AI Tools', ai: true, tagline: 'Requires free Claude API key · ~$5 free credits to start', taglineRu: 'Требует бесплатный Claude API ключ · ~$5 бесплатных кредитов для старта', items: [
     { id: 'excel-formula', icon: '📊', name: 'Excel Formulas',   desc: 'Describe → get formula',        descRu: 'Описать → получить формулу' },
     { id: 'invoice-gen',   icon: '🧾', name: 'Invoice Generator',desc: 'AI-generated invoices',         descRu: 'Инвойс с помощью AI' },
     { id: 'ocr-ai',        icon: '🔍', name: 'OCR + AI Cleanup', desc: 'Extract text from images',      descRu: 'Извлечь текст из изображений' },
@@ -5311,7 +5318,12 @@ function hpRender() {
   HP_TOOLS.forEach(group => {
     const section = document.createElement('div');
     const labelClass = group.ai ? 'hp-group-label hp-group-ai' : 'hp-group-label hp-group-offline';
-    section.innerHTML = '<div class="' + labelClass + '">' + group.group + '</div>';
+    let sectionHtml = '<div class="' + labelClass + '">' + group.group + '</div>';
+    if (group.tagline) {
+      const tl = (currentLang === 'ru' && group.taglineRu) ? group.taglineRu : group.tagline;
+      sectionHtml += '<div style="font-family:var(--mono-font);font-size:10px;color:var(--muted);margin-bottom:10px;margin-top:-4px">' + tl + '</div>';
+    }
+    section.innerHTML = sectionHtml;
 
     const grid = document.createElement('div');
     grid.className = 'hp-tools-grid';
@@ -5326,7 +5338,6 @@ function hpRender() {
         '<div class="hp-tool-icon">' + tool.icon + '</div>' +
         '<div class="hp-tool-name">' + tool.name + '</div>' +
         '<div class="hp-tool-desc">' + (isRu ? tool.descRu : tool.desc) + '</div>' +
-        (group.ai ? '<div class="hp-ai-badge">AI</div>' : '') +
         '<button class="hp-pin-btn ' + (isPinned ? 'pinned' : '') + '" onclick="hpTogglePin(\'' + tool.id + '\', event)" title="' + (isPinned ? 'Unpin' : 'Pin to sidebar') + '">' +
           (isPinned ? '⭐' : '☆') +
         '</button>';
